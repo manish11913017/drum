@@ -1,12 +1,33 @@
-var numberOfButton = document.querySelectorAll(".drum").length; //number of buttons in the web page
+/* detecting button press by mouse click */
+var numberOfButton = document.querySelectorAll(".drum").length; // number of buttons in the web page = 7
 
 for(var i=0; i<numberOfButton; i++){
+    /* We used for loop for the perpose of knowing which key is pressed 
+        (.drum)[i] will iterate through the buttons and stores the info of clicked button*/
 
     document.querySelectorAll(".drum")[i].addEventListener("click", function() {
+        
+      var buttonInnerHTML = this.innerHTML; // variable for inner html of clicked button
+      
+      makeSound(buttonInnerHTML);
 
-      var buttonInnerHTML = this.innerHTML; //inner html for clicked button
+    });
 
-      switch(buttonInnerHTML){
+  }
+
+/* Event listener for key strokes */
+document.addEventListener("keydown", function(event){
+
+    makeSound(event.key);
+
+})
+
+
+/* detecting key presses of the keyboard */
+function makeSound(key){
+
+    switch(key){
+
         case "w":
           var tom1 = new Audio("sounds/tom-1.mp3");
           tom1.play();
@@ -42,11 +63,8 @@ for(var i=0; i<numberOfButton; i++){
           kick.play();
           break;
 
-
         default: console.log(key);
 
-      }
-
-    });
+      }    
 
   }
