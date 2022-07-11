@@ -10,6 +10,7 @@ for(var i=0; i<numberOfButton; i++){
       var buttonInnerHTML = this.innerHTML; // variable for inner html of clicked button
       
       makeSound(buttonInnerHTML);
+      buttonAnimation(buttonInnerHTML);
 
     });
 
@@ -19,6 +20,7 @@ for(var i=0; i<numberOfButton; i++){
 document.addEventListener("keydown", function(event){
 
     makeSound(event.key);
+    buttonAnimation(event.key);
 
 })
 
@@ -66,5 +68,17 @@ function makeSound(key){
         default: console.log(key);
 
       }    
+
+  }
+
+  // Adding animation to websites
+
+  function buttonAnimation(currentkey){
+
+    var activeButton = document.querySelector("." + currentkey);
+    activeButton.classList.add("pressed");
+    setTimeout(function(){
+          activeButton.classList.remove("pressed");
+      }, 250);
 
   }
